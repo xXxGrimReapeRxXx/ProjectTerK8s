@@ -248,3 +248,18 @@ Use all these commands and YAML configurations in the online Kubernetes playgrou
 - Expose the application using `NodePort` or `LoadBalancer`.
 - Modify and delete resources to observe behavior.
 
+
+
+After trying to run minikube for the sake of learning the basics of Kubernetees, I encountered numerous erros,
+one of which beeing that I need to enable virtualization support in my Bios settings, which I did, but still faced the same issue.
+https://github.com/kubernetes/minikube/issues/3900
+I found the above article and now I am trying to run this command with this flag:
+minikube start --no-vtx-check
+For now it still in loading phase, pop up saying that it will use VirtualBox interface came up, currently at 
+Creating virtualbox VM (CPUs=2, Memory=6000MB, Disk=20000MB) ...
+
+Now encountered the error:
+! StartHost failed, but will try again: creating host: create: precreate: VirtualBox is configured with multiple host-only adapters with the same name "HostInterfaceNetworking-VirtualBox Host-Only Ethernet Adapter #2". Please remove one
+
+removed the adapters from the Network settings of Virtual Box but without success.
+Since I lost again my little dedicated time will continue tomorrow.
