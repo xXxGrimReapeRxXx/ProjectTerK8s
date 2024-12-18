@@ -263,3 +263,24 @@ Now encountered the error:
 
 removed the adapters from the Network settings of Virtual Box but without success.
 Since I lost again my little dedicated time will continue tomorrow.
+
+Since facing a lot of technical difficulties while trying to install minikube on my system and
+later learning that is heavy on the system itself, I decided to try with the other alternative which
+is KIND ( Kubernetees In Docker).
+From what I have learn it makes clusters on containers, hence Docker Desktop (the windows version for running containers)
+must be installed.
+
+While trying to download Docker For desktop, I ran into the following error:
+![alt text](images/image11.png)
+After further investigation I can see that this happends when WSL 2 or Hyper-V is not enabled on the system as well as WSL 2
+
+Found PWSH (priviliged)command for enabling Hyper-V:
+>"dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V-All /all /norestart
+"
+And the PWSH (priviliged) command for enabling WSL 2:
+>"dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+>"dism.exe /online /enable-feature /featurename:WindowsSubsystemForLinux /all /norestart
+"
+
+After that I issued an restart on my PC
