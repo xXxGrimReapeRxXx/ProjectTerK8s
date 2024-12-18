@@ -284,3 +284,32 @@ And the PWSH (priviliged) command for enabling WSL 2:
 "
 
 After that I issued an restart on my PC
+
+While waiting the installer going to check the logs
+at %TEMP%  [WIN+R]
+
+No relevant logs found.
+Came up with the idea to install version 4.37
+The same error.
+
+Found offical docs related to this error:
+https://forums.docker.com/t/unable-to-install-docker-desktop-4-8-2-component-communityinstaller-enablefeaturesaction-failed-not-found/124882
+
+Bottom line issue may be related to Windows Management Instrumentation (WMI) repository corruption issues
+
+1.Running priviliged CMD prompt
+>"winmgmt /verifyrepository
+"
+It is WMI repository is consistent so I guess it is fine..
+
+So the issue seems unrelated to WMI corruption, also checked the CPU tab on my Task Manager
+Virtualization is indeed enabled.
+
+Checked Windows Features, both Hyper-V and WSL are enabled.
+
+Opened cmd where I got the docker installer and ran this command
+>"start /w "" "Docker Desktop Installer.exe" install"
+
+Unchecking the Hyper-V option in Windows Features, restarting and checking it again.
+
+Tried everything I could get my hands on, because I am giving to much time into this error, I will try tomorrow to start KIND from WSL
