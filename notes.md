@@ -313,3 +313,17 @@ Opened cmd where I got the docker installer and ran this command
 Unchecking the Hyper-V option in Windows Features, restarting and checking it again.
 
 Tried everything I could get my hands on, because I am giving to much time into this error, I will try tomorrow to start KIND from WSL
+
+
+Future self, since you may be wondering what happend at this milestone, yet I have deployed
+Azure Storage Account and managed to use it as backend for terraform and version controll all of that, while trying to learn more
+about k8s locally I faced certain problems, and while trying to fix them I faced even more problems.
+In the end I ended up buying Hasrhicorp Certified Terraform Associate priparation by wizlabs
+Doing videos,labs, sandboxes while making learnining in  interesting manner .
+The plan is to open my VirtualBox and try k8s via Linux VM
+
+![alt text](/images/hashi.png)
+I had concern about the course being tied to AWS infrastructure but I reminded myself that
+the concepts are basically almost the same 
+As they say with one bullet two rabbits, I can't wait to absorb new knowledge but at the same time
+I gotta do it in timely manner since my day-to-day job is quite "CPU" demanding as well.
