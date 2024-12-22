@@ -334,3 +334,84 @@ I gotta do it in timely manner since my day-to-day job is quite "CPU" demanding 
 
 First lab, preparing for Terraform Associate Exam
 ![alt text](images/lab1.png)
+
+And since I allocated time as well to learn Terraform and K8s, I opened up
+my Virtual Box, with Bridge Connection as networking Option one of my Kali Linux VMs
+about to install docker and other dependencies and see if I will still face issues, as I did
+on my Host OS which is Windows
+
+# Installing Docker
+
+sudo apt update && sudo apt install docker.io -y
+
+# Ensure Docker is running
+
+sudo systemctl start docker
+sudo systemctl enable docker
+docker --version
+
+Worth mentioning I allocated 11 RAM for the machine to ensure it has the needed requirements for running 
+docker and k8s
+
+
+# Installing Kubernetes tools (kubectl, kubeadm, kubelet)
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+Download the GPG key and save it to /usr/share/keyrings:
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+Add the Kubernetes repository to your system:
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+*yes I got navigated by ChatGPT for some of the commands since long time no see Linux CLI..*
+
+Since when trying to install k8s tools they can not find the repo , had to re-add the repository and confirm it:
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+Also ensure the GPG Key is properly installed
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+and finally update my package cache 
+sudo apt-get update
+
+Which got the output 
+
+Hit:1 http://http.kali.org/kali kali-rolling InRelease
+Ign:4 https://download.docker.com/linux/debian kali-rolling InRelease
+Err:5 https://download.docker.com/linux/debian kali-rolling Release
+  404  Not Found [IP: 18.165.61.84 443]
+Hit:2 https://packages.microsoft.com/repos/code stable InRelease
+Ign:3 https://packages.cloud.google.com/apt kubernetes-xenial InRelease
+Err:6 https://packages.cloud.google.com/apt kubernetes-xenial Release
+  404  Not Found [IP: 142.251.140.14 443]
+Reading package lists... Done
+E: The repository 'https://download.docker.com/linux/debian kali-rolling Release' does not have a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+E: The repository 'https://apt.kubernetes.io kubernetes-xenial Release' does not have a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+
+After researching it appears that Docker repository does not have a kalli-rolling release file, but I can use the bullseye Debian 11
+sudo nano /etc/apt/sources.list.d/docker.list
+
+replaced it with
+deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable
+
+
+Update the GPG Key for Docker: Download and add the GPG key for Docker:
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+Again try To Update the Package cache
+sudo apt-get update
+
+Since it is getting again quite late I will try again when I have free time
+
+Options that I see:
+[ ] Try to troubleshoot and run docker and k8s on kali linux
+[ ] Quickly Deploy linux distro and version that can run seemlessly those two
