@@ -327,3 +327,10 @@ I had concern about the course being tied to AWS infrastructure but I reminded m
 the concepts are basically almost the same 
 As they say with one bullet two rabbits, I can't wait to absorb new knowledge but at the same time
 I gotta do it in timely manner since my day-to-day job is quite "CPU" demanding as well.
+
+
+--
+22.12.2024
+
+First lab, preparing for Terraform Associate Exam
+![alt text](images/lab1.png)
