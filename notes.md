@@ -415,3 +415,23 @@ Since it is getting again quite late I will try again when I have free time
 Options that I see:
 [ ] Try to troubleshoot and run docker and k8s on kali linux
 [ ] Quickly Deploy linux distro and version that can run seemlessly those two
+
+---
+
+23.12.2024
+My Terraform study journey
+
+Today I learned that when you run terraform init it downloads the required providers that are specified at main.tf, but
+if that provider is not developed by Hashicorp, but 3rd party, you *must* specify the needed settings that you will find in the documentation section
+of that provider (for Example Digital Ocean)
+
+After that I downloaded the usage code for Github provider, then when in the Github settings >> Developer Settings
+>>Personal Access Tokens
+
+I generated new token and added it in the argument sections of the github provider giving just access to repo and repo delete operations
+Later I added the github_repository resource 
+I specified name and visibility to private of the repo that I will create.
+Then `terraform init`
+it downloaded the necessary provider.
+
+`terraform plan` it validated my settup and downloaded the lock
