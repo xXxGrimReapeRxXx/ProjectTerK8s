@@ -435,3 +435,16 @@ Then `terraform init`
 it downloaded the necessary provider.
 
 `terraform plan` it validated my settup and downloaded the lock
+
+So what I did is created github repo using terraform and Personal Access Token with basic
+permissions that give terraform, I faced issues while following the tutorial, after a bit
+of research the issue that I was facing was because in the tutorial they were using the resource with template,
+which you got by default when creating github account and since my account is old I may have deleted it, thus the output was with 404 error.
+I deleted the refference as using template and created a public repo.
+Finally I deleted the created resource with `terraform destroy`
+One thing that I could have done better is not hardcoding the PAT but rather having seperate module with variables.
+Other good consideration is having only appropriate permissions for specific time granted.
+Which reminds me to go and delete the PAT (just in case, even that it is valid for 7 days)
+![alt text](/images/githubprovider.png)
+
+---
