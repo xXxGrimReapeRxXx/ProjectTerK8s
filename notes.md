@@ -448,3 +448,54 @@ Which reminds me to go and delete the PAT (just in case, even that it is valid f
 ![alt text](/images/githubprovider.png)
 
 ---
+24.12.2024
+
+Today starts of with learning about provider versioning.
+
+So after having sample code that refferences the required aws provider version to be greater than 3
+and running `terraform init`
+
+I can see
+![alt text](/images/minimal_version.png)
+
+Even though that when going into the `use provider` section of AWS the specified in code version is :
+
+![alt text](/images/use_provider.png)
+
+This happens because my terraform is older version itself.
+
+![alt text](/images/older_version.png)
+
+Now trying to change the version to 2.0
+
+Got this error:
+![alt text](/images/failed_query.png)
+
+In order to fix that the .lock file must be removed.
+Because once that file is created it will adhere to that specification (dependencies and stuff)
+:
+
+![alt text](/images/successfull.png)
+
+Now even trying a version that is between two versions, of course <br>before running `terraform init` 
+I make sure I deleted the lock file.
+
+![alt text](/images/between.png)
+![alt text](/images/between_versions.png)
+
+Also looking at the hidden folder we can see how terraform keeps track of different versions that we downloaded:
+<br>
+![alt text](/images/diff_vers.png)
+<br>
+Now made the version to be ~> 3.0
+and got this output, this time I didn't deleted the lock file
+<br>
+
+![alt text](/images/lockfileusage.png)
+
+
+But the tutorial that I follow mentions such scenarios and dealing with such situations first by deleting the lock file just as we did up until now and the other one is with 
+<br>
+`terraform init -upgrade`
+
+It's basically a command that ignores what is in the lock file and creates from fresh
