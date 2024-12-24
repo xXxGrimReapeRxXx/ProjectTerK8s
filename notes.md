@@ -449,7 +449,7 @@ Which reminds me to go and delete the PAT (just in case, even that it is valid f
 
 ---
 24.12.2024
-
+# Provider versioning, the loc file, specifying concrete versions 
 Today starts of with learning about provider versioning.
 
 So after having sample code that refferences the required aws provider version to be greater than 3
@@ -495,7 +495,42 @@ and got this output, this time I didn't deleted the lock file
 
 
 But the tutorial that I follow mentions such scenarios and dealing with such situations first by deleting the lock file just as we did up until now and the other one is with 
-<br>
+<br></br>
 `terraform init -upgrade`
 
 It's basically a command that ignores what is in the lock file and creates from fresh
+
+# Terrafrom state
+Terraform keeps a state file of every resource created  in `terraform.tfstate`<br>
+The state file is like a mapping / bridging between your local computer and the resource. Everytime we `apply` or `plan` it will refresh the state.<br></br>
+It can be configured to be stored <b>locally</b> or <b>remotely</b> for example in Azure Blob Storage
+If we delete the state file when we run 
+`terraform plan`
+<br></br>
+the local machine has no idea about the remote  and it will show it has to create resources
+if we then hit 
+`terraform apply`
+<br></br>
+It will try to create them, it will see these resources are already created with the same name and it will say that there are resources with the same name<br></br>
+<b>[ ! ]</b>  We should not change the state file<br>
+<b>[ ! ]</b>  We should not change the resource from other place than terraform<br>
+<b>[ ! ]</b>  The moment we run `terraform destroy` for something that is outside of sync it will not be deleted!
+
+<br></br>
+When there is a mistmatch from the Portal of the cloud and the terraform state file
+we can see it by running<br></br>
+`terraform refresh`
+
+It will cross-check the local state vs the remote state nnd it will update with the latest state
+
+If from the Cloud Portal we change the configuration of hte virtual machine the current state and desired state will have difference
+
+`terraform refresh`
+It will fetch the current state <br></br>
+`terraform plan`
+It will show the changes <br></br>
+`terraform apply` <br></br>
+It will apply to adhere to the desired state
+
+Desired State --> what we mention in the configuration file<br></br>
+Actual / Current State --> the actual state of the resource at that particular moment
