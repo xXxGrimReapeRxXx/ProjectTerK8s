@@ -42,3 +42,19 @@ If something did poped up, I would have used this command
 
 `docker stop <container-id or container-name>
 `
+[a few hours later]<br></br>
+Okay so I registered, and created my first public repository:
+
+https://hub.docker.com/repository/docker/acko666/mynewbierepos/general
+
+`docker build -t username/repository_name .`
+
+The username is the docker hub name and the repository_name is mynewbiereposs that I created above
+
+Then I need to authenticate / login 
+
+`docker login`
+
+then to push the image into the repo :
+
+`docker push acko666/mynewbierepos`
