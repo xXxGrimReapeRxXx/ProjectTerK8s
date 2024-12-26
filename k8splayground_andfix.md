@@ -122,3 +122,28 @@ upon further investigation it appears this is the way of adding worker nodes to 
 
 IT appears that the online platform that I am trying to learn has broken part or bug that I can not continue to use it so I will move to minikube just to grasp the basics
 
+
+
+
+
+<h1><b>!!FINALLY managed to install Docker on my machine!</b></h1>
+Long story short the problem was indeed related with corrupted WMI repository
+Managed to have it fixed  with this article :
+
+https://stackoverflow.com/questions/71095210/installing-docker-desktop-4-5-0-failed-componet-communityinstaller-enablefeatur
+
+More specifically this command 
+
+CD C:\Windows\System32\WBEM && dir /b *.mof *.mfl | findstr /v /i uninstall > moflist.txt & for /F %s in (moflist.txt) do mofcomp %s
+
+After that installed `kubectl`
+choco install kubernetes-cli
+
+checked the version 
+`kubectl version`
+
+Now enabling in Docker Desktop the Kubernetes option
+![alt text](/images/enable_k8s.png)
+
+finally <br></br>
+`kubectl get nodes`

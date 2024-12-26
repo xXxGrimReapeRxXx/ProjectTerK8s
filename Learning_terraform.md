@@ -218,3 +218,21 @@ During the apply phase, terraform outputs the attributes of the resources.The ou
 
 ![alt text](/images/ec2outputosecgroup.png)
 For example when creating EC2 instance the Elastic IP can be assigned / passed to Security Group
+
+
+
+---
+26.12.2024<br></br>
+Today's lab is <br></br> <h1> Host a S3 Static Website using Terraform</h1>
+
+<b>Architecture Diagram</b><br></br>
+![alt text](/images/statics3website.png)
+
+<h1>Steps taken:</h1>
+
+Created a `variables.tf` in which I have the following:
+
+
+![alt text](/images/variablesaws_required.png)
+<br></br>
+ 
